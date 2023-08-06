@@ -15,10 +15,20 @@ import { ArticleProvider } from '@/providers/article';
 import indexStyle from '../index.module.scss';
 import style from './index.module.scss';
 
+/**
+ * 描述articles是什么形状的数据
+ * 第一个key是年份，第二个key是月份
+ */
 interface IProps {
   articles: { [key: string]: { [key: string]: IArticle[] } };
 }
 
+/**
+ * 渲染月份对应的文章列表
+ * @param month
+ * @param articles
+ * @constructor
+ */
 const ArchiveItem = ({ month, articles = [] }) => {
   return (
     <div className={style.item}>
@@ -51,15 +61,24 @@ const ArchiveItem = ({ month, articles = [] }) => {
   );
 };
 
+/**
+ * 计算一共有多少文章
+ * @param articles
+ */
 const resolveArticlesCount = (articles) => {
   const years = Object.keys(articles);
-  return years.reduce((a, year) => {
+  return years.reduce((totalCount, year) => {
     const months = Object.keys(articles[year]);
-    a += months.reduce((b, month) => (b += articles[year][month].length), 0);
-    return a;
+    totalCount += months.reduce((total, month) => (total += articles[year][month].length), 0);
+    return totalCount;
   }, 0);
 };
 
+/**
+ * 归档页面
+ * @param articles
+ * @constructor
+ */
 const Archives: NextPage<IProps> = ({ articles }) => {
   const { categories, setting } = useContext(GlobalContext);
   const t = useTranslations();

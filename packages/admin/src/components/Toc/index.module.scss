@@ -30,12 +30,13 @@
   overflow: hidden;
   text-overflow: ellipsis;
 
-  &:hover, &.active {
-    color: var(--primary-color)
+  &:hover,
+  &.active {
+    color: var(--primary-color);
   }
 
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     top: 50%;
     left: var(--dot-left);
@@ -46,4 +47,3 @@
     border-radius: 50%;
   }
 }
-

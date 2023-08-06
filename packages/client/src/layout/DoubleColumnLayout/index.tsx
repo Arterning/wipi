@@ -19,6 +19,18 @@ interface IProps {
   showComment?: boolean;
 }
 
+/**
+ * 双列布局
+ * @param leftNode
+ * @param leftClassName
+ * @param rightNode
+ * @param rightClassName
+ * @param isRightNodeMobileHidden
+ * @param minHeight
+ * @param likesProps
+ * @param showComment
+ * @constructor
+ */
 export const DoubleColumnLayout: React.FC<IProps> = ({
   leftNode,
   leftClassName = null,
@@ -49,6 +61,9 @@ export const DoubleColumnLayout: React.FC<IProps> = ({
     };
   }, [toggleWidge]);
 
+  /**
+   * 当一个指定类型的事件（'header-state'）发生时，根据事件数据来控制某个DOM元素的position、marginTop和transform属性，从而实现该元素的固定或吸附效果。
+   */
   useEffect(() => {
     const handler = (evt) => {
       const { id, isFxied, isFixedVisible, height } = evt.data;

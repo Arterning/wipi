@@ -31,6 +31,9 @@ export const Search: React.FC<IProps> = ({ visible = true, onClose }) => {
     onClose(false);
   }, [onClose]);
 
+  /**
+   * 调用后台API方法实现文章搜索
+   */
   const getArticles = useCallback(
     (keyword) => {
       if (!keyword) {

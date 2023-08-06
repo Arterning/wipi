@@ -5,6 +5,10 @@ import { useToggle } from '@/hooks/useToggle';
 
 import styles from './index.module.scss';
 
+/**
+ * 主题切换
+ * @constructor
+ */
 export const Theme = () => {
   const [mounted, setMounted] = useState(false);
   const [dark, toggleDark] = useToggle(false);

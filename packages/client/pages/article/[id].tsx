@@ -24,6 +24,11 @@ interface IProps {
   article: IArticle;
 }
 
+/**
+ * 文章详情
+ * @param article
+ * @constructor
+ */
 const Article: NextPage<IProps> = ({ article }) => {
   const t = useTranslations();
   const { setting } = useContext(GlobalContext);

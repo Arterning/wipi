@@ -22,6 +22,13 @@ interface IProps {
   otherBooks: Array<IKnowledge>;
 }
 
+/**
+ * 获取指定知识手册的首页
+ * @param pId
+ * @param book
+ * @param otherBooks
+ * @constructor
+ */
 const Page: NextPage<IProps> = ({ pId, book, otherBooks = [] }) => {
   const { setting } = useContext(GlobalContext);
   const t = useTranslations();

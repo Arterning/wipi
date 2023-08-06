@@ -29,6 +29,14 @@ const NAV_LINKS = [
   },
 ];
 
+/**
+ * 头部导航栏
+ * @param setting
+ * @param tags
+ * @param pages
+ * @param hasBg
+ * @constructor
+ */
 export const Header = ({ setting, tags, pages, hasBg = false }) => {
   const t = useTranslations();
   const router = useRouter();

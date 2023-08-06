@@ -20,6 +20,12 @@ interface IHomeProps {
 
 const pageSize = 12;
 
+/**
+ * 知识小册首页 展示所有的知识手册
+ * @param defaultBooks
+ * @param total
+ * @constructor
+ */
 const Page: NextPage<IHomeProps> = ({ books: defaultBooks = [], total = 0 }) => {
   const { categories, setting } = useContext(GlobalContext);
   const t = useTranslations();

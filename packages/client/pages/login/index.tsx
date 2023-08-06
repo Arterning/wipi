@@ -14,6 +14,12 @@ interface IProps {
   from: string;
 }
 
+/**
+ * 登录页面
+ * @param code
+ * @param from
+ * @constructor
+ */
 const Page: NextPage<IProps> = ({ code, from }: IProps) => {
   const t = useTranslations();
   const { setUser } = useContext(GlobalContext);

@@ -56,6 +56,7 @@ export class ArticleService {
 
   /**
    * 获取所有文章
+   * 这里queryParams可以非常灵活
    */
   async findAll(queryParams): Promise<[Article[], number]> {
     const query = this.articleRepository
@@ -167,6 +168,7 @@ export class ArticleService {
 
   /**
    * 获取文章归档
+   * 按照年月日归档
    */
   async getArchives(): Promise<{ [key: string]: Article[] }> {
     const data = await this.articleRepository.find({

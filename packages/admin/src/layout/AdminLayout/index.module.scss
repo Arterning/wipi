@@ -42,7 +42,7 @@
     flex: 1;
     flex-direction: column;
 
-    >header {
+    > header {
       width: 100%;
       padding: 16px;
       border-bottom: 1px solid var(--border-color);
@@ -65,13 +65,13 @@
       }
     }
 
-    >.content {
+    > .content {
       display: flex;
       flex: 1;
       flex-direction: column;
       overflow: hidden;
 
-      >header {
+      > header {
         position: relative;
         z-index: 100;
         padding: 12px 24px;
@@ -90,12 +90,12 @@
         }
       }
 
-      >main {
+      > main {
         flex: 1;
         padding: 24px;
         overflow: auto;
 
-        >footer {
+        > footer {
           padding: 20px 0;
           color: rgb(0 0 0 / 65%);
           text-align: center;

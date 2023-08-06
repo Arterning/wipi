@@ -8,6 +8,9 @@ interface Response<T> {
   data: T;
 }
 
+/**
+ * 拦截器 用于打印日志
+ */
 @Injectable()
 export class TransformInterceptor<T> implements NestInterceptor<T, Response<T>> {
   // eslint-disable-next-line class-methods-use-this

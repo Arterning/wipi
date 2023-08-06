@@ -28,6 +28,7 @@ export const CategoryMenu = ({ categories }) => {
   const router = useRouter();
   const { asPath } = router;
   return (
+    //水平首页菜单
     <Menu mode="horizontal">
       {[
         {
@@ -123,6 +124,9 @@ const Home: NextPage<IHomeProps> = ({ articles: defaultArticles = [], recommende
 };
 // 服务端预取数据
 Home.getInitialProps = async () => {
+  // Promise.all 接受一个包含多个Promise的数组作为输入，并返回一个新的Promise。
+  // 这个新的Promise会在所有输入的Promise都解决（即全部完成）后进行解决，或者在其中一个Promise被拒绝（失败）时进行拒绝。
+  // 如果所有的Promise都成功解决，Promise.all 的返回值将是一个包含所有Promise结果的数组。
   const [articles, recommendedArticles] = await Promise.all([
     ArticleProvider.getArticles({ page: 1, pageSize, status: 'publish' }),
     ArticleProvider.getAllRecommendArticles().catch(() => []),
