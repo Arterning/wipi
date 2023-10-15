@@ -40,6 +40,7 @@
     "react-helmet": "^6.1.0",
     "react-sortable-hoc": "^2.0.0",
     "showdown": "^1.9.1",
+    "styled-jsx": "^5.1.2",
     "viewerjs": "^1.5.0"
   },
   "devDependencies": {

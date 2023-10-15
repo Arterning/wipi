@@ -52,7 +52,7 @@ export class NProgress extends React.Component<IProps> {
     const { color, spinner } = this.props;
 
     return (
-      <style jsx={true} global={true}>{`
+      <style jsx>{`
         #nprogress {
           pointer-events: none;
         }
