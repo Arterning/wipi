@@ -52,10 +52,10 @@ import { ViewModule } from './modules/view/view.module';
       useFactory: async (configService: ConfigService) => ({
         type: 'mysql',
         entities: [User, File, Knowledge, Article, Category, Tag, Comment, Setting, SMTP, Page, View, Search],
-        host: configService.get('DB_HOST', '0.0.0.0'),
+        host: configService.get('DB_HOST', 'localhost'),
         port: configService.get<number>('DB_PORT', 3306),
         username: configService.get('DB_USER', 'root'),
-        password: configService.get('DB_PASSWD', 'root'),
+        password: configService.get('DB_PASSWD', '123456'),
         database: configService.get('DB_DATABASE', 'wipi'),
         charset: 'utf8mb4',
         timezone: '+08:00',
