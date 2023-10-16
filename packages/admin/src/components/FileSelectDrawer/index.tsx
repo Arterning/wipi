@@ -101,6 +101,9 @@ export const FileSelectDrawer: React.FC<IFileProps> = ({
           <Alert message="点击卡片复制链接，点击图片查看大图" type="info" />
         </div>
       )}
+      <div style={{ marginBottom: 16 }}>
+        <Alert message="点击图像查看，点击文件名确认选中媒体" type="info" />
+      </div>
       <div ref={ref}>
         <PaginationTable
           loading={loading}
