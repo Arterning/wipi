@@ -11,8 +11,9 @@ export class MiniOssClient extends OssClient {
   async putFile(filepath: string, buffer: ReadableStream): Promise<string> {
     const client = this.buildClient();
     try {
+      const ext = filepath.split('.')[1];
       const bucketName = (this.config.bucket as string) || 'xiaohui';
-      const objectName = bucketName + '_' + new Date().getTime() + '.png';
+      const objectName = bucketName + '_' + new Date().getTime() + '.' + ext;
       await client.putObject(bucketName, objectName, buffer);
       return `http://${minioConfig.endPoint}:${minioConfig.port}/${bucketName}/${objectName}`;
     } catch (error) {
