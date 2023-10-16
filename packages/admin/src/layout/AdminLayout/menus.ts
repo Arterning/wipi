@@ -84,7 +84,7 @@ export const menus = [
     title: '个人中心',
     icon: 'user',
     path: '/ownspace',
-    ignore: true,
+    // ignore: true,
   },
   {
     icon: 'user',

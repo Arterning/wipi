@@ -75,7 +75,7 @@ export const AdminLayout: React.FC<{ headerAppender?: React.ReactNode }> = ({ he
             </Col>
             <Col span={12} style={{ textAlign: 'right' }}>
               <div className={style.info}>
-                <a className={style.github} href="https://github.com/fantasticit/wipi" target="_blank" rel="noreferrer">
+                <a className={style.github} href="https://github.com/Arterning" target="_blank" rel="noreferrer">
                   <GithubOutlined />
                 </a>
                 <UserInfo />
