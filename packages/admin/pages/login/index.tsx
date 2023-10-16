@@ -68,12 +68,12 @@ const _Login: React.FC<ILoginProps> = ({ form }) => {
                 })(<Input type="password" placeholder="请输入密码" />)}
               </Form.Item>
               <Form.Item>
-                <Button type="primary" htmlType="submit" style={{ width: '100%' }} loading={loading} disabled={loading}>
+                <Button type="primary" htmlType="submit" style={{ width: '30%' }} loading={loading} disabled={loading}>
                   登录
                 </Button>
-                Or{' '}
-                <Link href="/register">
-                  <a>注册用户</a>
+                or{' '}
+                <Link href="/register" type="secondary">
+                  <Button>注册用户</Button>
                 </Link>
               </Form.Item>
             </Form>

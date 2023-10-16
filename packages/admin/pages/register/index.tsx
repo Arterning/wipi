@@ -106,16 +106,16 @@ const _Register: React.FC<IProps> = ({ form }) => {
                 <Button
                   type="primary"
                   htmlType="submit"
-                  size="large"
-                  style={{ width: '100%' }}
+                  size="medium"
+                  style={{ width: '30%' }}
                   loading={loading}
                   disabled={loading}
                 >
                   注册
                 </Button>
-                Or{' '}
+                or{' '}
                 <Link href="/login">
-                  <a>去登录</a>
+                  <Button>去登录</Button>
                 </Link>
               </Form.Item>
             </Form>
