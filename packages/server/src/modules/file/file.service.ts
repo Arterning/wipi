@@ -81,7 +81,7 @@ export class FileService {
    */
   async deleteById(id) {
     const target = await this.fileRepository.findOne(id);
-    await this.oss.deleteFile(target.filename);
+    await this.oss.deleteFile(target.filename, target.url);
     return this.fileRepository.remove(target);
   }
 }

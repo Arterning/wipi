@@ -21,8 +21,8 @@ export class AliyunOssClient extends OssClient {
     return url;
   }
 
-  async deleteFile(url: string) {
+  async deleteFile(filepath: string) {
     const client = await this.buildClient();
-    await client.delete(url);
+    await client.delete(filepath);
   }
 }

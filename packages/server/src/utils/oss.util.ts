@@ -42,8 +42,8 @@ export class Oss {
     return url;
   }
 
-  async deleteFile(url: string) {
+  async deleteFile(filepath: string, url: string) {
     const client = await this.getOssClient();
-    await client.deleteFile(url);
+    await client.deleteFile(filepath, url);
   }
 }

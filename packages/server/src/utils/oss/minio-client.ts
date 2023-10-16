@@ -4,10 +4,24 @@ import minioConfig from './minio.config';
 import { OssClient } from './oss-client';
 
 export class MiniOssClient extends OssClient {
-  deleteFile(url: string): Promise<void> {
+  /**
+   * 删除文件
+   * @param filepath
+   * @param url
+   */
+  async deleteFile(filepath: string, url: string): Promise<void> {
+    const client = this.buildClient();
+    const bucketName = (this.config.bucket as string) || 'xiaohui';
+    const objectName = url.split('/')[url.split('/').length - 1];
+    await client.removeObject(bucketName, objectName, {});
     return Promise.resolve(undefined);
   }
 
+  /**
+   * 上传文件
+   * @param filepath
+   * @param buffer
+   */
   async putFile(filepath: string, buffer: ReadableStream): Promise<string> {
     const client = this.buildClient();
     try {
