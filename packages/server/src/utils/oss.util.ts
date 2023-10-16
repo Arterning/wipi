@@ -2,6 +2,7 @@ import { HttpException, HttpStatus } from '@nestjs/common';
 
 import { SettingService } from '../modules/setting/setting.service';
 import { AliyunOssClient } from './oss/aliyun-oss-client';
+import { MiniOssClient } from './oss/minio-client';
 import { OssClient } from './oss/oss-client';
 
 export class Oss {
@@ -27,6 +28,8 @@ export class Oss {
     const type = String(config.type).toLowerCase();
 
     switch (type) {
+      case 'minio':
+        return new MiniOssClient(config);
       case 'aliyun':
       default:
         return new AliyunOssClient(config);
