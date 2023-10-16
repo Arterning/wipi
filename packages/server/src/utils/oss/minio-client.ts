@@ -12,9 +12,9 @@ export class MiniOssClient extends OssClient {
     const client = this.buildClient();
     try {
       const bucketName = (this.config.bucket as string) || 'xiaohui';
-      const objectName = bucketName + new Date().getTime() + '.png';
+      const objectName = bucketName + '_' + new Date().getTime() + '.png';
       await client.putObject(bucketName, objectName, buffer);
-      return `http://${minioConfig.endPoint}/${bucketName}/${objectName}`;
+      return `http://${minioConfig.endPoint}:${minioConfig.port}/${bucketName}/${objectName}`;
     } catch (error) {
       throw new Error(`Minio upload error: ${error}`);
     }
