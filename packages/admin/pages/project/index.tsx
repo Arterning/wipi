@@ -5,9 +5,9 @@ import {PaginationTable} from "@components/PaginationTable";
 import {usePagination} from "@/hooks/usePagination";
 import {ProjectProvider} from "@/providers/project";
 import {useToggle} from "@/hooks/useToggle";
-import {Button, Drawer, Input, message} from "antd";
+import {Button, Drawer, Input, message, Popconfirm} from "antd";
 import {PlusOutlined} from "@ant-design/icons";
-import React, {useCallback, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import {Upload} from "@components/Upload";
 import {FileSelectDrawer} from "@components/FileSelectDrawer";
 import {useAsyncLoading} from "@/hooks/useAsyncLoading";
@@ -76,6 +76,18 @@ function ProjectDrawer({ visible, toggleVisible, project = undefined, onOk}) {
             onOk(res);
         });
     }, [title, summary, cover, project, isUpdate, createApi, updateApi, toggleVisible, onOk]);
+
+
+    /**
+     * 编辑project的时候 初始化页面需要填充state
+     * 这里是从state流向UI
+     * onChange是从UI流向state
+     */
+    useEffect(() => {
+        setTitle((project && project.title) || '');
+        setSummary((project && project.summary) || '');
+        setCover((project && project.cover) || '');
+    }, [project]);
 
     return (
         <Drawer title={isUpdate ? '更新项目' : '新建项目'} width={600} visible={visible} onClose={toggleVisible}>
@@ -169,23 +181,79 @@ const Project: NextPage = () => {
         ...resetPagination
     } = usePagination<IProject>(ProjectProvider.getProjects);
     const [visible, toggleVisible] = useToggle(false);
+    const [selectedProject, setSelectedProject] = useState<IProject | null>(null);
+    const [deleteAPi, deleteLoading] = useAsyncLoading(ProjectProvider.deleteProject);
+
+    /**
+     * 创建项目
+     */
+    const createProject = useCallback(
+        () => {
+            setSelectedProject(undefined);
+            toggleVisible();
+        }, [toggleVisible]
+    )
+
+    /**
+     * 更新项目
+     */
+    const editProject = useCallback(
+        (item) => {
+            setSelectedProject(item);
+            toggleVisible();
+        },
+        [toggleVisible]
+    );
+
+    /**
+     * 删除项目
+     */
+    const deleteProject = useCallback( (id) => {
+        deleteAPi(id).then(() => {
+            message.success('操作成功');
+            refresh();
+        })
+    }, [deleteAPi, refresh]);
+
+    const actionColumns = [
+        {
+            title: '操作',
+            key: 'action',
+            render: (text, record) => (
+                <span>
+                    <Button onClick={() => editProject(record)}>编辑</Button>
+                    <Popconfirm
+                        title="确认删除这个文章？"
+                        onConfirm={() => deleteProject(record.id)}
+                        okText="确认"
+                        cancelText="取消"
+                        okButtonProps={{ loading: deleteLoading }}
+                    >
+                        <Button type="link" size={'small'} danger={true}>
+                            删除
+                        </Button>
+                    </Popconfirm>
+                </span>
+            ),
+        }
+    ]
     return (
         <AdminLayout>
-            <div>ProjectAdmin</div>
+            <h2>项目管理</h2>
             <PaginationTable
                 searchFields={SEARCH_FIELDS} refresh={refresh} showSelection={true}
                 loading={listLoading}
                 data={data}
-                columns={columns}
+                columns={[...columns, ...actionColumns]}
                 {...resetPagination}
                 rightNode={
-                    <Button type="primary" onClick={toggleVisible}>
+                    <Button type="primary" onClick={createProject}>
                         <PlusOutlined />
                         新建
                     </Button>
                 }
             />
-            <ProjectDrawer visible={visible} toggleVisible={toggleVisible} onOk={refresh}/>
+            <ProjectDrawer visible={visible} toggleVisible={toggleVisible} onOk={refresh} project={selectedProject}/>
         </AdminLayout>
     );
 };

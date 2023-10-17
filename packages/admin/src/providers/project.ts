@@ -29,4 +29,12 @@ export class ProjectProvider {
         return httpProvider.patch(`/project/${id}`, data);
     }
 
+    static async deleteProject(id) {
+        if (ProjectProvider.isMock) {
+            projectsData.splice(id, 1);
+            return Promise.resolve();
+        }
+        return httpProvider.delete(`/project/${id}`);
+    }
+
 }
