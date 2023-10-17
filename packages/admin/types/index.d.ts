@@ -83,6 +83,15 @@ interface IPage {
   publishAt: string;
 }
 
+interface IProject {
+  id: string;
+  title: string;
+  desc: string;
+  cover?: string;
+  href: string;
+  status: string;
+}
+
 interface IComment {
   id: string;
   name: string;
