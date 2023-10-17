@@ -5,6 +5,11 @@ export const menus = [
     path: '/',
   },
   {
+    icon: 'project',
+    title: '项目管理',
+    path: '/project',
+  },
+  {
     icon: 'form',
     title: '文章管理',
     children: [
