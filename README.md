@@ -202,3 +202,11 @@ server {
 - next.js 文档：https://nextjs.org/
 - nest.js 源码：https://github.com/nestjs/nest
 - nest.js 文档：https://nestjs.com/
+
+
+## 问题
+
+1. 将 UTF-8 setting 插入 MySQL 时出现“错误的字符串值”？
+
+>修改i18n字段类型为utf8mb4_unicode_ci
+> - [资料](https://stackoverflow.com/questions/10957238/incorrect-string-value-when-trying-to-insert-utf-8-into-mysql-via-jdbc)
